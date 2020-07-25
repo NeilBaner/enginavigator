@@ -1,0 +1,6 @@
+{
+    "dbhost": "enginavigator-data.c0brhv6ccvb1.us-east-1.rds.amazonaws.com",
+    "dbname": "map_data",
+    "dbuser": "admin",
+    "dbpass" : "hunter2_engin"
+}

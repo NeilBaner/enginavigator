@@ -1,0 +1,19 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "the lambda component for our API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/neilbaner/enginavigator"
+  },
+  "author": "neilbaner",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "node-dijkstra": "^2.5.0"
+  }
+}
