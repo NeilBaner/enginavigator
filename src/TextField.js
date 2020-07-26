@@ -8,7 +8,8 @@ class TextField extends Component {
     constructor() {
         super();
         this.state = {
-            directions: [],
+            directions: [""],
+            edges: [],
             location: [],
             start: 1,
             end: 5,
@@ -21,7 +22,7 @@ class TextField extends Component {
     //update the paragraph of directions when the user clicks "Search" 
     updateText() {
         // initially show loading text
-        this.setState({ directions: ["Loading Directions..."] });
+        this.setState({ directions: [] });
         // call API to get route
         https.get(`https://0997tcpnme.execute-api.us-east-1.amazonaws.com/testing/routes?start=${this.state.start}&end=${this.state.end}`,
             (resp) => {
@@ -36,6 +37,9 @@ class TextField extends Component {
                         this.setState({
                             directions: JSON.parse(data).map((obj) => {
                                 return obj.edge_description;
+                            }),
+                            edges: JSON.parse(data).map((obj) => {
+                                return obj.edge_id;
                             }),
                         });
                     } catch (err) {
@@ -79,15 +83,28 @@ class TextField extends Component {
     // render the Directions section
     renderDirections() {
         const { directions } = this.state;
-        if (directions.length == 1) {
+        if (directions.length == 0) {
+            return (
+                <p>
+                <img src="https://64.media.tumblr.com/695ce9a82c8974ccbbfc7cad40020c62/tumblr_o9c9rnRZNY1qbmm1co1_1280.gifv" width="50">  
+                </img> 
+                <br>
+                </br>
+                    Loading Directions...
+                </p>
+            );
+        } else if (directions.length == 1){
             return (
                 <ul>
                     {directions.map((inst) => (
-                        <li>{inst}</li>
+                        <li>
+                            {inst}
+
+                        </li>
                     ))}
                 </ul>
             );
-        } else {
+        }else {
             return (
                 <ol>
                     {directions.map((inst) => (
