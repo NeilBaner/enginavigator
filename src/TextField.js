@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AutoCompleteText from "./AutoCompleteText";
 import "./TextField.css";
+import Checkbox from "react-simple-checkbox"
 
 const https = require("https");
 
@@ -8,7 +9,7 @@ class TextField extends Component {
     constructor() {
         super();
         this.state = {
-            directions: [""],
+            directions: [{edge_description: "", edge_id:0}],
             edges: [],
             location: [],
             start: 1,
@@ -36,15 +37,12 @@ class TextField extends Component {
                     try {
                         this.setState({
                             directions: JSON.parse(data).map((obj) => {
-                                return obj.edge_description;
-                            }),
-                            edges: JSON.parse(data).map((obj) => {
-                                return obj.edge_id;
+                                return obj;
                             }),
                         });
                     } catch (err) {
                         this.setState({
-                            directions: ["There was an error getting the route you wanted. Sorry :("]
+                            directions: [{edge_description: "There was an error getting the route you wanted. Sorry :(", edge_id: 0}]
                         })
                     }
                 });
@@ -98,8 +96,7 @@ class TextField extends Component {
                 <ul>
                     {directions.map((inst) => (
                         <li>
-                            {inst}
-
+                            {inst.edge_description}
                         </li>
                     ))}
                 </ul>
@@ -108,7 +105,7 @@ class TextField extends Component {
             return (
                 <ol>
                     {directions.map((inst) => (
-                        <li>{inst}</li>
+                        <li>{inst.edge_description}<br/><img src={"https://enginavigator-images.s3.amazonaws.com/edge_images/" + inst.edge_id + ".png"}/></li>
                     ))}
                 </ol>
             );
