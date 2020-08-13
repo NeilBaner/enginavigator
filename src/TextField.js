@@ -105,7 +105,7 @@ class TextField extends Component {
             return (
                 <ol>
                     {directions.map((inst) => (
-                        <li>{inst.edge_description}<br/><img src={"https://enginavigator-images.s3.amazonaws.com/edge_images/" + inst.edge_id + ".png"}/></li>
+                        <li>{inst.edge_description}<br/><img src={"https://enginavigator-images.s3.amazonaws.com/edge_images/" + inst.edge_id + ".png"} width="100"/></li>
                     ))}
                 </ol>
             );
